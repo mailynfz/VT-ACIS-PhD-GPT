@@ -2,16 +2,28 @@ import openai
 import streamlit as st
 import time
 
+# Configure site title, icon, and other
+site_title = "ACIS PhD GPT"
+site_icon = ":nerd_face:"
+
+# Set the page title, description, and other text
+page_title = "ACIS PhD GPT"
+description = "GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business"
+as_of = 'Last Updated 2023-11-19'
+other_text = "Made with :heart: by Mailyn (4th-year) in 2023"
 
 # Initialize the OpenAI client
 client = openai
 
 # Set up the Streamlit page with a title and icon
-st.set_page_config(page_title="ACIS PhD GPT", page_icon=":speech_balloon:")
+st.set_page_config(page_title= site_title, page_icon= site_icon)
 
 # Main chat interface setup
-st.title("ACIS PhD GPT")
-st.write("GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business")
+st.title(page_title)
+st.write(description)
+
+if other_text != "":
+    st.write(other_text)
 
 # Set OpenAI contants 
 if st.secrets:
@@ -125,3 +137,6 @@ if st.session_state.start_chat:
                 st.markdown(full_response, unsafe_allow_html=True)
 else:
     st.write("Something is wrong. Please try again later.")
+
+if as_of != "":
+    st.write(as_of)
