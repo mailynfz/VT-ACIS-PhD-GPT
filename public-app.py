@@ -31,7 +31,6 @@ if st.secrets:
         assistant_id = st.secrets['ASSISTANT_ID']
 
     if 'OPENAI_API_KEY' in st.secrets:
-        st.success('API key already provided!', icon='✅')
         openai.api_key = st.secrets['OPENAI_API_KEY']
 
 # Initialize session state variables for file IDs and chat control
