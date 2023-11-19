@@ -138,4 +138,4 @@ else:
     st.write("Something is wrong. Please try again later.")
 
 if as_of != "":
-    st.write(as_of)
+    st.caption(as_of)
