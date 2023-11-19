@@ -1,7 +1,17 @@
-
 import openai
 import streamlit as st
 import time
+
+
+# Initialize the OpenAI client
+client = openai
+
+# Set up the Streamlit page with a title and icon
+st.set_page_config(page_title="ACIS PhD GPT", page_icon=":speech_balloon:")
+
+# Main chat interface setup
+st.title("ACIS PhD GPT")
+st.write("GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business")
 
 # Set OpenAI contants 
 if st.secrets:
@@ -11,10 +21,16 @@ if st.secrets:
     if 'OPENAI_API_KEY' in st.secrets:
         st.success('API key already provided!', icon='✅')
         openai.api_key = st.secrets['OPENAI_API_KEY']
-    
 
-# Initialize the OpenAI client
-client = openai
+# Initialize session state variables for file IDs and chat control
+if "file_id_list" not in st.session_state:
+    st.session_state.file_id_list = []
+
+if "start_chat" not in st.session_state:
+    st.session_state.start_chat = False
+
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = None
 
 # Define the function to process messages with citations
 def process_message_with_citations(message):
@@ -43,30 +59,13 @@ def process_message_with_citations(message):
     return full_response
 
 
-# Initialize session state variables for file IDs and chat control
-if "file_id_list" not in st.session_state:
-    st.session_state.file_id_list = []
-
-if "start_chat" not in st.session_state:
-    st.session_state.start_chat = False
-
-if "thread_id" not in st.session_state:
-    st.session_state.thread_id = None
-
-# Set up the Streamlit page with a title and icon
-st.set_page_config(page_title="ACIS PhD GPT", page_icon=":speech_balloon:")
-
-# Main chat interface setup
-st.title("ACIS PhD GPT")
-st.write("GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business")
-
 # Initiate Chat
 st.session_state.start_chat = True
 
 # Create a thread once and store its ID in session state
 thread = client.beta.threads.create()
 st.session_state.thread_id = thread.id
-st.write("thread id: ", thread.id)
+# st.write("thread id: ", thread.id)
 
 # Only show the chat interface if the chat has been started
 if st.session_state.start_chat:
