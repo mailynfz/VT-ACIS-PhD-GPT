@@ -23,7 +23,7 @@ st.title(page_title)
 st.write(description)
 
 if other_text != "":
-    st.write(other_text)
+    st.caption(other_text)
 
 # Set OpenAI contants 
 if st.secrets:
