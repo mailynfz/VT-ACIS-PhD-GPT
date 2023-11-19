@@ -10,7 +10,7 @@ site_icon = ":nerd_face:"
 page_title = "ACIS PhD GPT"
 description = "GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business"
 as_of = 'Last Updated 2023-11-19'
-other_text = "Made with :heart: by Mailyn (4th-year) in 2023"
+other_text = ""
 
 # Initialize the OpenAI client
 client = openai
