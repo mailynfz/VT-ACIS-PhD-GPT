@@ -13,7 +13,7 @@ description = "A GPT4-powered chat assistant to answer your questions about the 
 instructions = 'Ask me anything about the ACIS PhD Program at Virginia Tech. I can answer questions about the program, the application process, and more.'
 as_of = 'Last Updated 2023-11-19'
 other_text = '' # Optional sidebar text
-footer_text = "Made with ♥ by Mailyn (4th-year student)"
+footer_text = "Made with 🧡 by Mailyn 😊"
 
 # Initialize the OpenAI client
 client = openai
