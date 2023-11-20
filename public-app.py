@@ -1,16 +1,19 @@
 import openai
 import streamlit as st
 import time
+from PIL import Image
 
 # Configure site title, icon, and other
-site_title = "ACIS PhD GPT"
+site_title = "ACIS PhD Program Chat"
 site_icon = ":nerd_face:"
 
 # Set the page title, description, and other text
-page_title = "ACIS PhD GPT"
-description = "GPT-Powered Chat Assistant for the ACIS PhD Program at Virginia Tech's Pamplin School of Business"
+page_title = "ACIS PhD Program Chat"
+description = "A GPT4-powered chat assistant to answer your questions about the ACIS PhD Program at Virginia Tech's Pamplin School of Business"
+instructions = 'Ask me anything about the ACIS PhD Program at Virginia Tech. I can answer questions about the program, the application process, and more.'
 as_of = 'Last Updated 2023-11-19'
-other_text = ""
+other_text = '' # Optional sidebar text
+footer_text = "Made with ♥ by Mailyn (4th-year student)"
 
 # Initialize the OpenAI client
 client = openai
@@ -19,11 +22,17 @@ client = openai
 st.set_page_config(page_title= site_title, page_icon= site_icon)
 
 # Main chat interface setup
-st.title(page_title)
-st.write(description)
+st.markdown(f"<h1 style='color: rgba(134, 31, 65, 1);'>{page_title}</h1>", unsafe_allow_html=True)
+st.caption(description)
+st.write(instructions)
+
+# Display the image in the sidebar
+filepath = "Vertical_VT_Full_Color_RGB.png"
+image = Image.open(filepath)
+st.sidebar.image(image)
 
 if other_text != "":
-    st.caption(other_text)
+    st.sidebar.write(other_text)
 
 # Set OpenAI contants 
 if st.secrets:
@@ -92,7 +101,7 @@ if st.session_state.start_chat:
             st.markdown(message["content"])
 
     # Chat input for the user
-    if prompt := st.chat_input("What's up, doc?"):
+    if prompt := st.chat_input(as_of):
         # Add user message to the state and display it
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
@@ -137,5 +146,25 @@ if st.session_state.start_chat:
 else:
     st.write("Something is wrong. Please try again later.")
 
-if as_of != "":
-    st.caption(as_of)
+
+def footer(text):
+    footer_html = f"""
+    <style>
+    .footer {{
+        position: fixed;
+        left: 10;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(241, 241, 241, 0);
+        color: rgba(117, 120, 123, 1);
+        text-align: left;
+    }}
+    </style>
+    <div class='footer'>
+        <p>{text}</p>
+    </div>
+    """
+    st.sidebar.markdown(footer_html, unsafe_allow_html=True)
+
+# Example usage in your Streamlit app
+footer(footer_text)
