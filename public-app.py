@@ -14,7 +14,7 @@ instructions = 'Ask me anything about the ACIS PhD Program at Virginia Tech. I c
 as_of = '' # Optional date of last update
 other_text = '' # Optional sidebar text
 chat_box_instructions = 'Type your questions here.'
-footer_text = 'Last Updated 2023-11-20
+footer_text = 'Last Updated 2023-11-20'
 
 # Initialize the OpenAI client
 client = openai
