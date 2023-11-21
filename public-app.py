@@ -11,9 +11,10 @@ site_icon = ":nerd_face:"
 page_title = "ACIS PhD Program Chat"
 description = "A GPT4-powered chat assistant to answer your questions about the ACIS PhD Program at Virginia Tech's Pamplin School of Business"
 instructions = 'Ask me anything about the ACIS PhD Program at Virginia Tech. I can answer questions about the program, the application process, and more.'
-as_of = 'Last Updated 2023-11-19'
+as_of = '' # Optional date of last update
 other_text = '' # Optional sidebar text
-footer_text = "Made with 🧡 by Mailyn 😊"
+chat_box_instructions = 'Type your questions here.'
+footer_text = 'Last Updated 2023-11-20
 
 # Initialize the OpenAI client
 client = openai
@@ -101,7 +102,7 @@ if st.session_state.start_chat:
             st.markdown(message["content"])
 
     # Chat input for the user
-    if prompt := st.chat_input(as_of):
+    if prompt := st.chat_input(chat_box_instructions):
         # Add user message to the state and display it
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
